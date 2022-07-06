@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import './styles/global.css'
 import { SubstrateContextProvider, useSubstrateState } from './substrate-lib'
 import ScreensHome from './screens/Home/Home'
+import ClaimRole from './components/User/ClaimRole'
 
 function Main() {
   const { apiState, apiError, keyringState } = useSubstrateState()
@@ -45,6 +46,7 @@ function Main() {
       <Router>
         <Routes>
           <Route path="/" element={<ScreensHome />} />
+          <Route path="/user/claim-role" element={<ClaimRole />} />
         </Routes>
       </Router>
     </div>
