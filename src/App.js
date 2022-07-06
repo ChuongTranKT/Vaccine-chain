@@ -6,6 +6,7 @@ import './styles/global.css'
 import { SubstrateContextProvider, useSubstrateState } from './substrate-lib'
 import ScreensHome from './screens/Home/Home'
 import ClaimRole from './components/User/ClaimRole'
+import ConfirmVaccine from './components/User/ConfirmVaccine'
 
 function Main() {
   const { apiState, apiError, keyringState } = useSubstrateState()
@@ -47,6 +48,7 @@ function Main() {
         <Routes>
           <Route path="/" element={<ScreensHome />} />
           <Route path="/user/claim-role" element={<ClaimRole />} />
+          <Route path="/user/confirm-vaccine" element={<ConfirmVaccine />} />
         </Routes>
       </Router>
     </div>

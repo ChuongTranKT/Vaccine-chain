@@ -2,24 +2,15 @@ import {
   Box,
   Button,
   Container,
-  FormControl,
   Grid,
   InputBase,
   InputLabel,
-  MenuItem,
-  Select,
   Stack,
   Typography,
 } from '@mui/material'
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const ClaimRole = () => {
-  const [role, setRole] = useState('system manage')
-
-  const handleChange = event => {
-    setRole(event.target.value)
-  }
+const ConfirmVaccine = () => {
   return (
     <Grid container direction="column" rowSpacing={8}>
       <Grid item md>
@@ -47,7 +38,7 @@ const ClaimRole = () => {
                 sx={{ fontSize: '4.8rem', fontWeight: 600 }}
                 align="center"
               >
-                Claim Role
+                Confirm Vaccine
               </Typography>
             </Stack>
             <Stack spacing={1} sx={{ px: 20 }}>
@@ -72,35 +63,46 @@ const ClaimRole = () => {
               </Box>
             </Stack>
             <Stack spacing={1} sx={{ px: 20 }}>
-              <InputLabel sx={{ fontSize: '2rem' }}>Role Name</InputLabel>
-
-              <FormControl fullWidth>
-                <Select
-                  value={role}
-                  onChange={handleChange}
-                  InputProps={{ disableUnderline: true }}
-                  sx={{
-                    fontSize: '1.6rem',
-                    boxShadow:
-                      'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;',
-                    p: 1,
-                    borderRadius: '0.6rem',
-                  }}
-                >
-                  <MenuItem value={'system manage'} sx={{ fontSize: '1.6rem' }}>
-                    System manage
-                  </MenuItem>
-                  <MenuItem
-                    value={'authorized organization'}
-                    sx={{ fontSize: '1.6rem' }}
-                  >
-                    Authorized organization
-                  </MenuItem>
-                  <MenuItem value={'Manufacture'} sx={{ fontSize: '1.6rem' }}>
-                    Manufacture
-                  </MenuItem>
-                </Select>
-              </FormControl>
+              <InputLabel sx={{ fontSize: '2rem' }}>Vaccine ID</InputLabel>
+              <Box
+                sx={{
+                  boxShadow:
+                    'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;',
+                  p: 2,
+                  borderRadius: '0.6rem',
+                }}
+              >
+                <InputBase
+                  id="vaccineID"
+                  type="text"
+                  name="vaccineID"
+                  placeholder="Vaccine ID"
+                  required
+                  fullWidth
+                  sx={{ fontSize: '1.6rem' }}
+                />
+              </Box>
+            </Stack>
+            <Stack spacing={1} sx={{ px: 20 }}>
+              <InputLabel sx={{ fontSize: '2rem' }}>Recipient ID</InputLabel>
+              <Box
+                sx={{
+                  boxShadow:
+                    'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;',
+                  p: 2,
+                  borderRadius: '0.6rem',
+                }}
+              >
+                <InputBase
+                  id="recipientID"
+                  type="text"
+                  name="recipientID"
+                  placeholder="Recipient ID"
+                  required
+                  fullWidth
+                  sx={{ fontSize: '1.6rem' }}
+                />
+              </Box>
             </Stack>
             <Stack
               direction="row"
@@ -135,4 +137,4 @@ const ClaimRole = () => {
   )
 }
 
-export default ClaimRole
+export default ConfirmVaccine
