@@ -10,6 +10,7 @@ import ConfirmVaccine from './components/User/ConfirmVaccine'
 import ApproveRole from './components/SystemManager/ApproveRole'
 import RegisterVaccineTypes from './components/SystemManager/RegisterVaccineType'
 import RegisterVaccine from './components/Manufacture/RegisterVaccine'
+import ReceiveVaccine from './components/Distributer/ReceiveVaccine'
 
 function Main() {
   const { apiState, apiError, keyringState } = useSubstrateState()
@@ -61,8 +62,12 @@ function Main() {
             element={<RegisterVaccineTypes />}
           />
           <Route
-            path="//manufacture/register-vaccine"
+            path="/manufacture/register-vaccine"
             element={<RegisterVaccine />}
+          />
+          <Route
+            path="/manufacture-distributer/receive-vaccine"
+            element={<ReceiveVaccine />}
           />
         </Routes>
       </Router>
