@@ -7,6 +7,7 @@ import { SubstrateContextProvider, useSubstrateState } from './substrate-lib'
 import ScreensHome from './screens/Home/Home'
 import ClaimRole from './components/User/ClaimRole'
 import ConfirmVaccine from './components/User/ConfirmVaccine'
+import ApproveRole from './components/SystemManager/ApproveRole'
 
 function Main() {
   const { apiState, apiError, keyringState } = useSubstrateState()
@@ -49,6 +50,10 @@ function Main() {
           <Route path="/" element={<ScreensHome />} />
           <Route path="/user/claim-role" element={<ClaimRole />} />
           <Route path="/user/confirm-vaccine" element={<ConfirmVaccine />} />
+          <Route
+            path="/system-manager/approve-role"
+            element={<ApproveRole />}
+          />
         </Routes>
       </Router>
     </div>

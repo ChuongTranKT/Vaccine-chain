@@ -12,7 +12,10 @@ const ScreensHome = () => {
   return (
     <Grid container>
       <Grid item md={6}>
-        <img src={backgroundImage} alt="" width="100%" position="relative" />
+        <Grid item md>
+          <img src={backgroundImage} alt="" width="100%" position="relative" />
+        </Grid>
+
         <Grid
           item
           container
@@ -32,7 +35,7 @@ const ScreensHome = () => {
             </Typography>
           </Grid>
           <Grid item md={6}>
-            <Box sx={{ p: 14 }}>
+            <Box sx={{ px: 14, pt: 14 }}>
               <Typography
                 variant="content"
                 sx={{
@@ -65,7 +68,11 @@ const ScreensHome = () => {
         {MenuHome.map(menu => (
           <Grid item md key={menu.id}>
             <Container>
-              <Stack spacing={1}>
+              <Stack
+                spacing={1}
+                direction="column"
+                justifyContent="space-evenly"
+              >
                 <Stack>
                   <Typography
                     variant="content"
