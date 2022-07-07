@@ -13,6 +13,7 @@ import RegisterVaccine from './components/Manufacture/RegisterVaccine'
 import ReceiveVaccine from './components/Distributer/ReceiveVaccine'
 import TransferVaccine from './components/Distributer/TransferVaccine'
 import TransferGetVaccineRight from './components/Distributer/TransferGetVaccineRight'
+import ApproveVaccine from './components/Organaization/ApproveVaccine'
 
 function Main() {
   const { apiState, apiError, keyringState } = useSubstrateState()
@@ -78,6 +79,10 @@ function Main() {
           <Route
             path="/manufacture-distributer/transfer-get-vaccine"
             element={<TransferGetVaccineRight />}
+          />
+          <Route
+            path="/approved-organization/approve-vaccine"
+            element={<ApproveVaccine />}
           />
         </Routes>
       </Router>
