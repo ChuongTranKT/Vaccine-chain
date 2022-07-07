@@ -8,6 +8,7 @@ import ScreensHome from './screens/Home/Home'
 import ClaimRole from './components/User/ClaimRole'
 import ConfirmVaccine from './components/User/ConfirmVaccine'
 import ApproveRole from './components/SystemManager/ApproveRole'
+import RegisterVaccineTypes from './components/SystemManager/RegisterVaccineType'
 
 function Main() {
   const { apiState, apiError, keyringState } = useSubstrateState()
@@ -53,6 +54,10 @@ function Main() {
           <Route
             path="/system-manager/approve-role"
             element={<ApproveRole />}
+          />
+          <Route
+            path="/system-manager/register-vaccine-types"
+            element={<RegisterVaccineTypes />}
           />
         </Routes>
       </Router>
