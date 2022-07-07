@@ -49,7 +49,7 @@ export const MenuHome = [
       {
         id: 3,
         title: 'Transfer get vaccine right',
-        link: '/manufacture-distributer/get-vaccine',
+        link: '/manufacture-distributer/transfer-get-vaccine',
       },
     ],
   },
