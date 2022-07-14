@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { Button } from 'semantic-ui-react'
+import { Button } from '@mui/material'
 import { web3FromSource } from '@polkadot/extension-dapp'
 
 import { useSubstrateState } from '../'
@@ -262,9 +262,9 @@ function TxButton({
 
   return (
     <Button
+      variant="contained"
+      sx={{ px: 5, py: 1, fontSize: '1.6rem' }}
       basic
-      color={color}
-      style={style}
       type="submit"
       onClick={transaction}
       disabled={
