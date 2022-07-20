@@ -1,19 +1,18 @@
 import React, { createRef } from 'react'
-import { Dimmer, Loader, Grid, Message } from 'semantic-ui-react'
-import 'semantic-ui-css/semantic.min.css'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import './styles/global.css'
-import { SubstrateContextProvider, useSubstrateState } from './substrate-lib'
-import ScreensHome from './screens/Home/Home'
+import 'semantic-ui-css/semantic.min.css'
+import { Dimmer, Grid, Loader, Message } from 'semantic-ui-react'
+import ReceiveVaccine from './components/Distributer/ReceiveVaccine'
+import TransferGetVaccineRight from './components/Distributer/TransferGetVaccineRight'
+import TransferVaccine from './components/Distributer/TransferVaccine'
+import RegisterVaccine from './components/Manufacture/RegisterVaccine'
+import ApproveVaccine from './components/Organaization/ApproveVaccine'
+import ApproveRole from './components/SystemManager/ApproveRole'
 import ClaimRole from './components/User/ClaimRole'
 import ConfirmVaccine from './components/User/ConfirmVaccine'
-import ApproveRole from './components/SystemManager/ApproveRole'
-import RegisterVaccineTypes from './components/SystemManager/RegisterVaccineType'
-import RegisterVaccine from './components/Manufacture/RegisterVaccine'
-import ReceiveVaccine from './components/Distributer/ReceiveVaccine'
-import TransferVaccine from './components/Distributer/TransferVaccine'
-import TransferGetVaccineRight from './components/Distributer/TransferGetVaccineRight'
-import ApproveVaccine from './components/Organaization/ApproveVaccine'
+import ScreensHome from './screens/Home/Home'
+import './styles/global.css'
+import { SubstrateContextProvider, useSubstrateState } from './substrate-lib'
 
 function Main() {
   const { apiState, apiError, keyringState } = useSubstrateState()
@@ -61,23 +60,27 @@ function Main() {
             element={<ApproveRole />}
           />
           <Route
-            path="/system-manager/register-vaccine-types"
-            element={<RegisterVaccineTypes />}
-          />
-          <Route
             path="/manufacture/register-vaccine"
             element={<RegisterVaccine />}
           />
           <Route
-            path="/manufacture-distributer/receive-vaccine"
+            path="/manufacture/receive-vaccine"
             element={<ReceiveVaccine />}
           />
           <Route
-            path="/manufacture-distributer/transfer-vaccine"
+            path="/manufacture/transfer-vaccine"
             element={<TransferVaccine />}
           />
           <Route
-            path="/manufacture-distributer/transfer-get-vaccine"
+            path="/distributer/receive-vaccine"
+            element={<ReceiveVaccine />}
+          />
+          <Route
+            path="/distributer/transfer-vaccine"
+            element={<TransferVaccine />}
+          />
+          <Route
+            path="/distributer/transfer-get-vaccine"
             element={<TransferGetVaccineRight />}
           />
           <Route

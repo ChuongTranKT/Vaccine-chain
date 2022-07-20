@@ -14,6 +14,7 @@ import { useSubstrateState } from '../../substrate-lib'
 import { TxButton } from '../../substrate-lib/components'
 import AccountMain from '../User/AccountMain'
 import '../../styles/input.css'
+import Header from '../UI/Header/Header'
 
 const argIsOptional = arg => arg.type.toString().startsWith('Option<')
 const ApproveRole = () => {
@@ -179,19 +180,7 @@ const ApproveRole = () => {
   return (
     <Grid container direction="column" rowSpacing={8}>
       <Grid item md>
-        <Stack
-          sx={{ height: 50, backgroundColor: 'rgba(217, 217, 217, 1)' }}
-          justifyContent="center"
-        >
-          <Typography
-            variant="content"
-            color="initial"
-            sx={{ fontSize: '2rem' }}
-            align="center"
-          >
-            Demo
-          </Typography>
-        </Stack>
+        <Header />
       </Grid>
       <Grid item md>
         <Container>
@@ -223,6 +212,7 @@ const ApproveRole = () => {
                   id="targetUserID"
                   type="text"
                   name="targetUserID"
+                  fluid
                   placeholder={paramField.type}
                   className="input-style"
                   state={{ ind, paramField }}

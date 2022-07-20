@@ -10,11 +10,6 @@ export const MenuHome = [
         title: 'Approve role',
         link: '/system-manager/approve-role',
       },
-      {
-        id: 2,
-        title: 'Register vaccine types',
-        link: '/system-manager/register-vaccine-types',
-      },
     ],
   },
   {
@@ -28,34 +23,44 @@ export const MenuHome = [
         title: 'Register vaccine',
         link: '/manufacture/register-vaccine',
       },
+      {
+        id: 2,
+        title: 'Receive vaccine',
+        link: '/manufacture/receive-vaccine',
+      },
+      {
+        id: 3,
+        title: 'Transfer vaccine',
+        link: '/manufacture/transfer-vaccine',
+      },
     ],
   },
   {
     id: 3,
-    title: 'Manufacture & Distributer',
+    title: 'Distributer',
     background:
       'linear-gradient(0deg, rgba(84, 163, 231, 0.5), rgba(84, 163, 231, 0.5))',
     tabMenu: [
       {
         id: 1,
         title: 'Receive vaccine',
-        link: '/manufacture-distributer/receive-vaccine',
+        link: '/distributer/receive-vaccine',
       },
       {
         id: 2,
         title: 'Transfer vaccine',
-        link: '/manufacture-distributer/transfer-vaccine',
+        link: '/distributer/transfer-vaccine',
       },
       {
         id: 3,
         title: 'Transfer get vaccine right',
-        link: '/manufacture-distributer/transfer-get-vaccine',
+        link: '/distributer/transfer-get-vaccine',
       },
     ],
   },
   {
     id: 4,
-    title: 'Approved organization',
+    title: 'Vaccine Approved organization',
     background:
       'linear-gradient(0deg, rgba(255, 100, 124, 0.5), rgba(255, 100, 124, 0.5))',
     tabMenu: [

@@ -11,6 +11,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSubstrateState } from '../../substrate-lib'
 import { TxButton } from '../../substrate-lib/components'
+import Header from '../UI/Header/Header'
 import AccountMain from './AccountMain'
 
 const argIsOptional = arg => arg.type.toString().startsWith('Optional<')
@@ -186,19 +187,7 @@ const ClaimRole = () => {
   return (
     <Grid container direction="column" rowSpacing={8}>
       <Grid item md>
-        <Stack
-          sx={{ height: 50, backgroundColor: 'rgba(217, 217, 217, 1)' }}
-          justifyContent="center"
-        >
-          <Typography
-            variant="content"
-            color="initial"
-            sx={{ fontSize: '2rem' }}
-            align="center"
-          >
-            Demo
-          </Typography>
-        </Stack>
+        <Header />
       </Grid>
       <Grid item md>
         <Container>
@@ -217,38 +206,6 @@ const ClaimRole = () => {
               <InputLabel sx={{ fontSize: '2rem' }}>Your ID</InputLabel>
               <AccountMain />
             </Stack>
-
-            {/* <Stack spacing={1} sx={{ px: 20 }}>
-              <InputLabel sx={{ fontSize: '2rem' }}>Role Name</InputLabel>
-
-              <FormControl fullWidth>
-                <Select
-                  value={role}
-                  onChange={handleChange}
-                  InputProps={{ disableUnderline: true }}
-                  sx={{
-                    fontSize: '1.6rem',
-                    boxShadow:
-                      'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;',
-                    p: 1,
-                    borderRadius: '0.6rem',
-                  }}
-                >
-                  <MenuItem value={'system manage'} sx={{ fontSize: '1.6rem' }}>
-                    System manage
-                  </MenuItem>
-                  <MenuItem
-                    value={'authorized organization'}
-                    sx={{ fontSize: '1.6rem' }}
-                  >
-                    Authorized organization
-                  </MenuItem>
-                  <MenuItem value={'Manufacture'} sx={{ fontSize: '1.6rem' }}>
-                    Manufacture
-                  </MenuItem>
-                </Select>
-              </FormControl>
-            </Stack> */}
             <Stack
               direction="row"
               justifyContent="flex-end"
