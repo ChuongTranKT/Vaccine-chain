@@ -9,15 +9,15 @@ import {
 } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Input } from 'semantic-ui-react'
 import { useSubstrateState } from '../../substrate-lib'
 import { TxButton } from '../../substrate-lib/components'
-import AccountMain from '../User/AccountMain'
-import '../../styles/input.css'
 import Header from '../UI/Header/Header'
+import AccountMain from './AccountMain'
 
-const argIsOptional = arg => arg.type.toString().startsWith('Option<')
-const ApproveRole = () => {
+const argIsOptional = arg => arg.type.toString().startsWith('Optional<')
+
+const Register = () => {
+  // const [role, setRole] = useState('system manage')
   const { api, jsonrpc } = useSubstrateState()
   const [status, setStatus] = useState(null)
 
@@ -28,11 +28,11 @@ const ApproveRole = () => {
 
   const initFormState = {
     palletRpc: 'account',
-    callable: 'approveRole',
+    callable: 'register',
     inputParams: [],
   }
 
-  const [formState, setFormState] = useState(initFormState)
+  const [formState] = useState(initFormState)
   const { palletRpc, callable, inputParams } = formState
 
   const getApiType = (api, interxType) => {
@@ -138,27 +138,32 @@ const ApproveRole = () => {
   useEffect(updateCallables, [api, interxType, palletRpc])
   useEffect(updateParamFields, [api, interxType, palletRpc, callable, jsonrpc])
 
-  const onPalletCallableParamChange = (_, data) => {
-    setFormState(formState => {
-      let res
-      const { state, value } = data
-      if (typeof state === 'object') {
-        // Input parameter updated
-        const {
-          ind,
-          paramField: { type },
-        } = state
-        const inputParams = [...formState.inputParams]
-        inputParams[ind] = { type, value }
-        res = { ...formState, inputParams }
-      } else if (state === 'palletRpc') {
-        res = { ...formState, [state]: value, callable: '', inputParams: [] }
-      } else if (state === 'callable') {
-        res = { ...formState, [state]: value, inputParams: [] }
-      }
-      return res
-    })
-  }
+  //   const onPalletCallableParamChange = (_, data) => {
+  //     setFormState(formState => {
+  //       let res
+  //       const { state, value } = data
+  //       if (typeof state === 'object') {
+  //         // Input parameter updated
+  //         const {
+  //           ind,
+  //           paramField: { type },
+  //         } = state
+  //         const inputParams = [...formState.inputParams]
+  //         inputParams[ind] = { type, value }
+  //         res = { ...formState, inputParams }
+  //       } else if (state === 'palletRpc') {
+  //         res = {
+  //           ...formState,
+  //           [state]: value,
+  //           callable: '',
+  //           inputParams: [],
+  //         }
+  //       } else if (state === 'callable') {
+  //         res = { ...formState, [state]: value, inputParams: [] }
+  //       }
+  //       return res
+  //     })
+  //   }
 
   // const onInterxTypeChange = (ev, data) => {
   //   setInterxType(data.value)
@@ -173,10 +178,16 @@ const ApproveRole = () => {
 
   // const labelNames = [
   //   {
-  //     value: 'Target User ID',
+  //     value: 'Your ID',
+  //   },
+  //   {
+  //     value: 'Role Name',
   //   },
   // ]
 
+  // const handleChange = event => {
+  //   setRole(event.target.value)
+  // }
   return (
     <Grid container direction="column" rowSpacing={8}>
       <Grid item md>
@@ -192,36 +203,27 @@ const ApproveRole = () => {
                 sx={{ fontSize: '4.8rem', fontWeight: 600 }}
                 align="center"
               >
-                Approve Role
+                Register
               </Typography>
             </Stack>
             <Stack spacing={1} sx={{ px: 20 }}>
               <InputLabel sx={{ fontSize: '2rem' }}>Your ID</InputLabel>
               <AccountMain />
             </Stack>
-            {paramFields.map((paramField, ind) => (
-              <Stack
-                spacing={1}
-                sx={{ px: 20 }}
-                key={`${paramField.name}-${paramField.type}`}
-              >
-                <InputLabel sx={{ fontSize: '2rem' }}>
-                  Target User ID
-                </InputLabel>
-                <Input
-                  id="targetUserID"
-                  type="text"
-                  name="targetUserID"
+            {/* <Stack spacing={1} sx={{ px: 20 }}>
+                <InputLabel sx={{ fontSize: '2rem' }}>Role</InputLabel>
+                <Dropdown
                   fluid
-                  placeholder={paramField.type}
+                  placeholder="role"
                   className="input-style"
-                  state={{ ind, paramField }}
-                  value={inputParams[ind] ? inputParams[ind].value : ''}
+                  search
+                  selection
                   onChange={onPalletCallableParamChange}
+                  state="palletRpc"
+                  value={palletRpc}
+                  options={palletRPCs}
                 />
-              </Stack>
-            ))}
-
+              </Stack> */}
             <Stack
               direction="row"
               justifyContent="flex-end"
@@ -262,7 +264,7 @@ const ApproveRole = () => {
   )
 }
 
-export default ApproveRole
+export default Register
 
 function InteractorSubmit(props) {
   const {

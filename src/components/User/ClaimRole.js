@@ -9,6 +9,7 @@ import {
 } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Input } from 'semantic-ui-react'
 import { useSubstrateState } from '../../substrate-lib'
 import { TxButton } from '../../substrate-lib/components'
 import Header from '../UI/Header/Header'
@@ -27,12 +28,12 @@ const ClaimRole = () => {
   const [paramFields, setParamFields] = useState([])
 
   const initFormState = {
-    palletRpc: 'templateModule',
-    callable: 'claimVm',
+    palletRpc: 'account',
+    callable: 'claimRole',
     inputParams: [],
   }
 
-  const [formState] = useState(initFormState)
+  const [formState, setFormState] = useState(initFormState)
   const { palletRpc, callable, inputParams } = formState
 
   const getApiType = (api, interxType) => {
@@ -138,28 +139,32 @@ const ClaimRole = () => {
   useEffect(updateCallables, [api, interxType, palletRpc])
   useEffect(updateParamFields, [api, interxType, palletRpc, callable, jsonrpc])
 
-  // const onPalletCallableParamChange = (_, data) => {
-  //   setFormState(formState => {
-  //     let res
-  //     const { state, value } = data
-  //     if (typeof state === 'object') {
-  //       // Input parameter updated
-  //       const {
-  //         ind,
-  //         paramField: { type },
-  //       } = state
-  //       const inputParams = [...formState.inputParams]
-  //       inputParams[ind] = { type, value }
-  //       res = { ...formState, inputParams }
-  //     } else if (state === 'palletRpc') {
-  //       res = { ...formState, [state]: value, callable: '', inputParams: [] }
-  //     } else if (state === 'callable') {
-  //       res = { ...formState, [state]: value, inputParams: [] }
-  //     }
-  //     return res
-  //   })
-  //   setInfoDebugMes(JSON.stringify(formState))
-  // }
+  const onPalletCallableParamChange = (_, data) => {
+    setFormState(formState => {
+      let res
+      const { state, value } = data
+      if (typeof state === 'object') {
+        // Input parameter updated
+        const {
+          ind,
+          paramField: { type },
+        } = state
+        const inputParams = [...formState.inputParams]
+        inputParams[ind] = { type, value }
+        res = { ...formState, inputParams }
+      } else if (state === 'palletRpc') {
+        res = {
+          ...formState,
+          [state]: value,
+          callable: '',
+          inputParams: [],
+        }
+      } else if (state === 'callable') {
+        res = { ...formState, [state]: value, inputParams: [] }
+      }
+      return res
+    })
+  }
 
   // const onInterxTypeChange = (ev, data) => {
   //   setInterxType(data.value)
@@ -206,6 +211,40 @@ const ClaimRole = () => {
               <InputLabel sx={{ fontSize: '2rem' }}>Your ID</InputLabel>
               <AccountMain />
             </Stack>
+            {/* <Stack spacing={1} sx={{ px: 20 }}>
+              <InputLabel sx={{ fontSize: '2rem' }}>Role</InputLabel>
+              <Dropdown
+                fluid
+                placeholder="role"
+                className="input-style"
+                search
+                selection
+                onChange={onPalletCallableParamChange}
+                state="palletRpc"
+                value={palletRpc}
+                options={palletRPCs}
+              />
+            </Stack> */}
+            {paramFields.map((paramField, ind) => (
+              <Stack
+                spacing={1}
+                sx={{ px: 20 }}
+                key={`${paramField.name}-${paramField.type}`}
+              >
+                <InputLabel sx={{ fontSize: '2rem' }}>Role</InputLabel>
+                <Input
+                  id="role"
+                  type="text"
+                  name="role"
+                  fluid
+                  placeholder="VM, VAO, VAD, GOV, SYSMAN, USER"
+                  className="input-style"
+                  state={{ ind, paramField }}
+                  value={inputParams[ind] ? inputParams[ind].value : ''}
+                  onChange={onPalletCallableParamChange}
+                />
+              </Stack>
+            ))}
             <Stack
               direction="row"
               justifyContent="flex-end"

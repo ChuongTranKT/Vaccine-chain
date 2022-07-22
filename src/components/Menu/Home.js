@@ -79,13 +79,18 @@ export const MenuHome = [
     tabMenu: [
       {
         id: 1,
-        title: 'Confirm vaccine',
-        link: '/user/confirm-vaccine',
+        title: 'Register',
+        link: '/user/register',
       },
       {
         id: 2,
         title: 'claim role',
         link: '/user/claim-role',
+      },
+      {
+        id: 3,
+        title: 'Confirm vaccine',
+        link: '/user/confirm-vaccine',
       },
     ],
   },

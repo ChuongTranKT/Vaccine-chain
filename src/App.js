@@ -10,6 +10,7 @@ import ApproveVaccine from './components/Organaization/ApproveVaccine'
 import ApproveRole from './components/SystemManager/ApproveRole'
 import ClaimRole from './components/User/ClaimRole'
 import ConfirmVaccine from './components/User/ConfirmVaccine'
+import Register from './components/User/Register'
 import ScreensHome from './screens/Home/Home'
 import './styles/global.css'
 import { SubstrateContextProvider, useSubstrateState } from './substrate-lib'
@@ -54,6 +55,7 @@ function Main() {
         <Routes>
           <Route path="/" element={<ScreensHome />} />
           <Route path="/user/claim-role" element={<ClaimRole />} />
+          <Route path="/user/register" element={<Register />} />
           <Route path="/user/confirm-vaccine" element={<ConfirmVaccine />} />
           <Route
             path="/system-manager/approve-role"

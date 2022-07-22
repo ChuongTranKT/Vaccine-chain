@@ -13,7 +13,12 @@ const ScreensHome = () => {
     <Grid container>
       <Grid item md={6}>
         <Grid item md>
-          <img src={backgroundImage} alt="" width="100%" position="relative" />
+          <img
+            src={backgroundImage}
+            alt=""
+            width="100%"
+            style={{ display: 'block' }}
+          />
         </Grid>
 
         <Grid
@@ -86,7 +91,7 @@ const ScreensHome = () => {
                   direction="row"
                   justifyContent="center"
                   alignItems="center"
-                  spacing={3}
+                  spacing={5}
                   sx={{
                     background: `${menu.background}`,
                     px: 3,
