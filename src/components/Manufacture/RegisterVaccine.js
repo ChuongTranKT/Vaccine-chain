@@ -17,7 +17,7 @@ import AccountMain from '../User/AccountMain'
 import '../../styles/input.css'
 
 const argIsOptional = arg => arg.type.toString().startsWith('Optional<')
-const RegisterVaccine = () => {
+const RegisterVaccineInfo = () => {
   const { api, jsonrpc } = useSubstrateState()
   const [status, setStatus] = useState(null)
 
@@ -159,6 +159,15 @@ const RegisterVaccine = () => {
       return res
     })
   }
+
+  const labelNames = [
+    {
+      value: 'Vaccine ID',
+    },
+    {
+      value: 'Vaccine Type',
+    },
+  ]
   return (
     <Grid container direction="column" rowSpacing={8}>
       <Grid item md>
@@ -174,7 +183,7 @@ const RegisterVaccine = () => {
                 sx={{ fontSize: '4.8rem', fontWeight: 600 }}
                 align="center"
               >
-                Register Vaccine
+                Register Vaccine Information
               </Typography>
             </Stack>
             <Stack spacing={1} sx={{ px: 20 }}>
@@ -187,15 +196,22 @@ const RegisterVaccine = () => {
                 sx={{ px: 20 }}
                 key={`${paramField.name}-${paramField.type}`}
               >
-                <InputLabel sx={{ fontSize: '2rem' }}>
-                  Vaccine Type ID
-                </InputLabel>
+                {paramField.option ? (
+                  <InputLabel sx={{ fontSize: '2rem' }}>
+                    {labelNames[ind].value}
+                  </InputLabel>
+                ) : (
+                  <InputLabel sx={{ fontSize: '2rem' }}>
+                    {labelNames[ind].value}
+                  </InputLabel>
+                )}
+
                 <Input
                   id="vaccineTypeID"
                   type="text"
                   name="vaccineTypeID"
                   fluid
-                  placeholder={paramField.type}
+                  placeholder={labelNames[ind].value}
                   className="input-style"
                   state={{ ind, paramField }}
                   value={inputParams[ind] ? inputParams[ind].value : ''}
@@ -243,7 +259,7 @@ const RegisterVaccine = () => {
   )
 }
 
-export default RegisterVaccine
+export default RegisterVaccineInfo
 
 function InteractorSubmit(props) {
   const {

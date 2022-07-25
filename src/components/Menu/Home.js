@@ -10,6 +10,11 @@ export const MenuHome = [
         title: 'Approve role',
         link: '/system-manager/approve-role',
       },
+      {
+        id: 2,
+        title: 'Register vaccine type',
+        link: '/system-manager/register-vaccine-type',
+      },
     ],
   },
   {
@@ -20,8 +25,8 @@ export const MenuHome = [
     tabMenu: [
       {
         id: 1,
-        title: 'Register vaccine',
-        link: '/manufacture/register-vaccine',
+        title: 'Register vaccine Information',
+        link: '/manufacture/register-vaccine-info',
       },
       {
         id: 2,

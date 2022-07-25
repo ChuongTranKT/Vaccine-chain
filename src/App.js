@@ -5,9 +5,10 @@ import { Dimmer, Grid, Loader, Message } from 'semantic-ui-react'
 import ReceiveVaccine from './components/Distributer/ReceiveVaccine'
 import TransferGetVaccineRight from './components/Distributer/TransferGetVaccineRight'
 import TransferVaccine from './components/Distributer/TransferVaccine'
-import RegisterVaccine from './components/Manufacture/RegisterVaccine'
+import RegisterVaccineInfo from './components/Manufacture/RegisterVaccine'
 import ApproveVaccine from './components/Organaization/ApproveVaccine'
 import ApproveRole from './components/SystemManager/ApproveRole'
+import RegisterVaccineTypes from './components/SystemManager/RegisterVaccineType'
 import ClaimRole from './components/User/ClaimRole'
 import ConfirmVaccine from './components/User/ConfirmVaccine'
 import Register from './components/User/Register'
@@ -62,8 +63,12 @@ function Main() {
             element={<ApproveRole />}
           />
           <Route
-            path="/manufacture/register-vaccine"
-            element={<RegisterVaccine />}
+            path="/system-manager/register-vaccine-type"
+            element={<RegisterVaccineTypes />}
+          />
+          <Route
+            path="/manufacture/register-vaccine-info"
+            element={<RegisterVaccineInfo />}
           />
           <Route
             path="/manufacture/receive-vaccine"

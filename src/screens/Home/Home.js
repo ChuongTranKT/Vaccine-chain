@@ -1,6 +1,7 @@
 import { Grid, Typography, Box, Stack, Container } from '@mui/material'
 import React from 'react'
 import backgroundImage from '../../assets/images/img-home.png'
+import iconSearch from '../../assets/ic_search.svg'
 // import backgroundSystem from '../../assets/images/img-system-manage.png'
 // import imgSystem from '../../assets/images/img-system.svg'
 // import imgManufacture from '../../assets/images/img-manufacture.png'
@@ -70,6 +71,11 @@ const ScreensHome = () => {
         direction="column"
         rowSpacing={2}
       >
+        <Grid>
+          <Stack direction="row" justifyContent="flex-end" sx={{ mr: 3 }}>
+            <img src={iconSearch} alt="" width="65px" height="65px" />
+          </Stack>
+        </Grid>
         {MenuHome.map(menu => (
           <Grid item md key={menu.id}>
             <Container>
@@ -106,7 +112,7 @@ const ScreensHome = () => {
                       <Link to={menuTab.link}>
                         <Box
                           sx={{
-                            px: 7,
+                            px: 6,
                             py: 3,
                             filter:
                               'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))',
