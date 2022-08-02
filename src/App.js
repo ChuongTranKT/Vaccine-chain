@@ -7,8 +7,10 @@ import TransferGetVaccineRight from './components/Distributer/TransferGetVaccine
 import TransferVaccine from './components/Distributer/TransferVaccine'
 import RegisterVaccineInfo from './components/Manufacture/RegisterVaccine'
 import ApproveVaccine from './components/Organaization/ApproveVaccine'
+import SearchVaccineInfo from './components/Search/SearchVaccineInfo'
 import ApproveRole from './components/SystemManager/ApproveRole'
 import RegisterVaccineTypes from './components/SystemManager/RegisterVaccineType'
+import TrackingVaccine from './components/TrackingVaccine/TrackingVac'
 import ClaimRole from './components/User/ClaimRole'
 import ConfirmVaccine from './components/User/ConfirmVaccine'
 import Register from './components/User/Register'
@@ -94,6 +96,8 @@ function Main() {
             path="/approved-organization/approve-vaccine"
             element={<ApproveVaccine />}
           />
+          <Route path="/search-vaccine-info" element={<SearchVaccineInfo />} />
+          <Route path="/tracking-vaccine-info" element={<TrackingVaccine />} />
         </Routes>
       </Router>
     </div>

@@ -6,31 +6,40 @@ import {
   InputLabel,
   Stack,
   Typography,
-  FormControl,
-  Select,
-  MenuItem,
 } from '@mui/material'
 //import { Input } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { Dropdown, Form } from 'semantic-ui-react'
+import Events from '../../Events'
+import '../../styles/input.css'
 import { useSubstrateState } from '../../substrate-lib'
 import { TxButton } from '../../substrate-lib/components'
 import Header from '../UI/Header/Header'
 import AccountMain from '../User/AccountMain'
-import '../../styles/input.css'
 
-const LIST_TYPE_VACCINE= [{
-  name: 'COVID19',
-  value: 'COVID19'
-},
-{
-  name: 'FLU',
-  value: 'FLU'
-},
-{
-  name: 'RUBELLA',
-  value: 'RUBELLA'
-}]
+const LIST_TYPE_VACCINE = [
+  {
+    key: 'COVID19',
+    text: 'COVID19',
+    value: 'COVID19',
+  },
+  {
+    key: 'FLU',
+    text: 'FLU',
+    value: 'FLU',
+  },
+  {
+    key: 'HPV',
+    text: 'HPV',
+    value: 'HPV',
+  },
+  {
+    key: 'RUBELLA',
+    text: 'RUBELLA',
+    value: 'RUBELLA',
+  },
+]
 const argIsOptional = arg => arg.type.toString().startsWith('Optional<')
 const RegisterVaccineTypes = () => {
   const { api, jsonrpc } = useSubstrateState()
@@ -40,13 +49,12 @@ const RegisterVaccineTypes = () => {
   const [, setPalletRPCs] = useState([])
   const [, setCallables] = useState([])
   const [paramFields, setParamFields] = useState([])
-  const [vaccineType, setVaccineType] = useState(LIST_TYPE_VACCINE[0].value)
+
   const initFormState = {
     palletRpc: 'vaccine',
     callable: 'registerVacType',
     inputParams: [],
   }
-
   const [formState, setFormState] = useState(initFormState)
   const { palletRpc, callable, inputParams } = formState
 
@@ -145,7 +153,7 @@ const RegisterVaccineTypes = () => {
     } else if (interxType === 'CONSTANT') {
       paramFields = []
     }
-
+    console.log('paramFields', paramFields)
     setParamFields(paramFields)
   }
 
@@ -171,12 +179,13 @@ const RegisterVaccineTypes = () => {
       } else if (state === 'callable') {
         res = { ...formState, [state]: value, inputParams: [] }
       }
+      console.log('res', res)
       return res
     })
   }
-  const handleChangeSelectVaccineType = (e) => {
-    setVaccineType(e.target.value)
-  }
+  // const handleChangeSelectVaccineType = e => {
+  //   setVaccineType(e.target.value)
+  // }
   const labelNames = [
     {
       value: 'Vaccine Type',
@@ -219,24 +228,19 @@ const RegisterVaccineTypes = () => {
                     {labelNames[ind].value}
                   </InputLabel>
                 )}
-                  <FormControl>
-                    <InputLabel id="demo-simple-select-label"></InputLabel>
-                    <Select
-                      value={vaccineType}
-                      label=""
-                      sx={{
-                        textAlign: 'left',
-                      }}
-                      onChange={handleChangeSelectVaccineType}
-                    >
-                      {LIST_TYPE_VACCINE.map((vaccineType) => (
-                        <MenuItem key={Math.random()} value={vaccineType.value}>
-                          {vaccineType.name}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                
+                <Form.Field className="input-style">
+                  <Dropdown
+                    placeholder="Vaccine Type"
+                    fluid
+                    label="Vaccine Types"
+                    onChange={onPalletCallableParamChange}
+                    search
+                    selection
+                    state={{ ind, paramField }}
+                    options={LIST_TYPE_VACCINE}
+                    style={{ fontSize: '1.6rem' }}
+                  />
+                </Form.Field>
               </Stack>
             ))}
             <Stack
@@ -272,6 +276,7 @@ const RegisterVaccineTypes = () => {
             <Container>
               <Box>{status}</Box>
             </Container>
+            <Events />
           </Stack>
         </Container>
       </Grid>

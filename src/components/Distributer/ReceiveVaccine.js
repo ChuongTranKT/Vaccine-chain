@@ -10,6 +10,7 @@ import {
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Input } from 'semantic-ui-react'
+import Events from '../../Events'
 import '../../styles/input.css'
 import { useSubstrateState } from '../../substrate-lib'
 import { TxButton } from '../../substrate-lib/components'
@@ -274,6 +275,7 @@ const ReceiveVaccine = () => {
             <Container>
               <Box>{status}</Box>
             </Container>
+            <Events />
           </Stack>
         </Container>
       </Grid>

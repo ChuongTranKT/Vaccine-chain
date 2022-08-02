@@ -9,11 +9,35 @@ import {
 } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Input } from 'semantic-ui-react'
+import { Dropdown, Form } from 'semantic-ui-react'
+import Events from '../../Events'
 import { useSubstrateState } from '../../substrate-lib'
 import { TxButton } from '../../substrate-lib/components'
 import Header from '../UI/Header/Header'
 import AccountMain from './AccountMain'
+
+const LIST_ROLE = [
+  {
+    key: 'VM',
+    text: 'VM',
+    value: 'VM',
+  },
+  {
+    key: 'VAO',
+    text: 'VAO',
+    value: 'VAO',
+  },
+  {
+    key: 'VAD',
+    text: 'VAD',
+    value: 'VAD',
+  },
+  {
+    key: 'SYSMAN',
+    text: 'SYSMAN',
+    value: 'SYSMAN',
+  },
+]
 
 const argIsOptional = arg => arg.type.toString().startsWith('Optional<')
 
@@ -231,18 +255,19 @@ const ClaimRole = () => {
                 sx={{ px: 20 }}
                 key={`${paramField.name}-${paramField.type}`}
               >
-                <InputLabel sx={{ fontSize: '2rem' }}>Role</InputLabel>
-                <Input
-                  id="role"
-                  type="text"
-                  name="role"
-                  fluid
-                  placeholder="VM, VAO, VAD, GOV, SYSMAN, USER"
-                  className="input-style"
-                  state={{ ind, paramField }}
-                  value={inputParams[ind] ? inputParams[ind].value : ''}
-                  onChange={onPalletCallableParamChange}
-                />
+                {/* <InputLabel sx={{ fontSize: '2rem' }}>Role</InputLabel> */}
+                <Form.Field className="input-style">
+                  <Dropdown
+                    placeholder="Role"
+                    fluid
+                    label="Role"
+                    onChange={onPalletCallableParamChange}
+                    search
+                    selection
+                    state={{ ind, paramField }}
+                    options={LIST_ROLE}
+                  />
+                </Form.Field>
               </Stack>
             ))}
             <Stack
@@ -278,6 +303,7 @@ const ClaimRole = () => {
             <Container>
               <Box>{status}</Box>
             </Container>
+            <Events />
           </Stack>
         </Container>
       </Grid>

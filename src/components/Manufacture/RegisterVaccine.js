@@ -7,7 +7,7 @@ import {
   Stack,
   Typography,
 } from '@mui/material'
-import { Input } from 'semantic-ui-react'
+import { Input, Dropdown, Form } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 import { useSubstrateState } from '../../substrate-lib'
@@ -15,6 +15,30 @@ import { TxButton } from '../../substrate-lib/components'
 import Header from '../UI/Header/Header'
 import AccountMain from '../User/AccountMain'
 import '../../styles/input.css'
+import Events from '../../Events'
+
+const LIST_TYPE_VACCINE = [
+  {
+    key: 'COVID19',
+    text: 'COVID19',
+    value: 'COVID19',
+  },
+  {
+    key: 'FLU',
+    text: 'FLU',
+    value: 'FLU',
+  },
+  {
+    key: 'HPV',
+    text: 'HPV',
+    value: 'HPV',
+  },
+  {
+    key: 'RUBELLA',
+    text: 'RUBELLA',
+    value: 'RUBELLA',
+  },
+]
 
 const argIsOptional = arg => arg.type.toString().startsWith('Optional<')
 const RegisterVaccineInfo = () => {
@@ -190,35 +214,69 @@ const RegisterVaccineInfo = () => {
               <InputLabel sx={{ fontSize: '2rem' }}>Your ID</InputLabel>
               <AccountMain />
             </Stack>
-            {paramFields.map((paramField, ind) => (
-              <Stack
-                spacing={1}
-                sx={{ px: 20 }}
-                key={`${paramField.name}-${paramField.type}`}
-              >
-                {paramField.option ? (
-                  <InputLabel sx={{ fontSize: '2rem' }}>
-                    {labelNames[ind].value}
-                  </InputLabel>
-                ) : (
-                  <InputLabel sx={{ fontSize: '2rem' }}>
-                    {labelNames[ind].value}
-                  </InputLabel>
-                )}
+            {paramFields.map((paramField, ind) => {
+              if (paramField.name === 'vacId') {
+                return (
+                  <Stack
+                    spacing={1}
+                    sx={{ px: 20 }}
+                    key={`${paramField.name}-${paramField.type}`}
+                  >
+                    {paramField.option ? (
+                      <InputLabel sx={{ fontSize: '2rem' }}>
+                        {labelNames[ind].value}
+                      </InputLabel>
+                    ) : (
+                      <InputLabel sx={{ fontSize: '2rem' }}>
+                        {labelNames[ind].value}
+                      </InputLabel>
+                    )}
 
-                <Input
-                  id="vaccineTypeID"
-                  type="text"
-                  name="vaccineTypeID"
-                  fluid
-                  placeholder={labelNames[ind].value}
-                  className="input-style"
-                  state={{ ind, paramField }}
-                  value={inputParams[ind] ? inputParams[ind].value : ''}
-                  onChange={onPalletCallableParamChange}
-                />
-              </Stack>
-            ))}
+                    <Input
+                      id="vaccineTypeID"
+                      type="text"
+                      name="vaccineTypeID"
+                      fluid
+                      placeholder={labelNames[ind].value}
+                      className="input-style"
+                      state={{ ind, paramField }}
+                      value={inputParams[ind] ? inputParams[ind].value : ''}
+                      onChange={onPalletCallableParamChange}
+                    />
+                  </Stack>
+                )
+              }
+              return (
+                <Stack
+                  spacing={1}
+                  sx={{ px: 20 }}
+                  key={`${paramField.name}-${paramField.type}`}
+                >
+                  {paramField.option ? (
+                    <InputLabel sx={{ fontSize: '2rem' }}>
+                      {labelNames[ind].value}
+                    </InputLabel>
+                  ) : (
+                    <InputLabel sx={{ fontSize: '2rem' }}>
+                      {labelNames[ind].value}
+                    </InputLabel>
+                  )}
+                  <Form.Field className="input-style">
+                    <Dropdown
+                      placeholder="Vaccine Type"
+                      fluid
+                      label="Vaccine Types"
+                      onChange={onPalletCallableParamChange}
+                      search
+                      selection
+                      state={{ ind, paramField }}
+                      options={LIST_TYPE_VACCINE}
+                      style={{ fontSize: '1.6rem' }}
+                    />
+                  </Form.Field>
+                </Stack>
+              )
+            })}
             <Stack
               direction="row"
               justifyContent="flex-end"
@@ -252,6 +310,7 @@ const RegisterVaccineInfo = () => {
             <Container>
               <Box>{status}</Box>
             </Container>
+            <Events />
           </Stack>
         </Container>
       </Grid>

@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   Container,
   Grid,
@@ -10,27 +9,27 @@ import {
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Input } from 'semantic-ui-react'
-import Events from '../../Events'
 import { useSubstrateState } from '../../substrate-lib'
 import { TxButton } from '../../substrate-lib/components'
 import Header from '../UI/Header/Header'
-import AccountMain from './AccountMain'
+// import AccountMain from '../User/AccountMain'
+import '../../styles/input.css'
+import FormTrackingVaccine from './FormTracking'
 
 const argIsOptional = arg => arg.type.toString().startsWith('Optional<')
-
-const Register = () => {
-  // const [role, setRole] = useState('system manage')
+const TrackingVaccine = () => {
+  // Retrieves the entries for all slashes, in all eras (no arg)
   const { api, jsonrpc } = useSubstrateState()
-  const [status, setStatus] = useState(null)
+  const [status, setStatus] = useState('')
 
-  const [interxType] = useState('EXTRINSIC')
+  const [interxType] = useState('QUERY')
   const [, setPalletRPCs] = useState([])
   const [, setCallables] = useState([])
   const [paramFields, setParamFields] = useState([])
 
   const initFormState = {
-    palletRpc: 'account',
-    callable: 'register',
+    palletRpc: 'vaccine',
+    callable: 'ownershipTracking',
     inputParams: [],
   }
 
@@ -58,6 +57,7 @@ const Register = () => {
       .sort()
       .filter(pr => Object.keys(apiType[pr]).length > 0)
       .map(pr => ({ key: pr, value: pr, text: pr }))
+
     setPalletRPCs(palletRPCs)
   }
 
@@ -88,7 +88,7 @@ const Register = () => {
           {
             name: metaType.asMap.key.toString(),
             type: metaType.asMap.key.toString(),
-            optional: false,
+            optional: true,
           },
         ]
       } else if (metaType.isDoubleMap) {
@@ -107,6 +107,7 @@ const Register = () => {
       }
     } else if (interxType === 'EXTRINSIC') {
       const metaArgs = api.tx[palletRpc][callable].meta.args
+      console.log(metaArgs)
 
       if (metaArgs && metaArgs.length > 0) {
         paramFields = metaArgs.map(arg => ({
@@ -114,6 +115,7 @@ const Register = () => {
           type: arg.type.toString(),
           optional: argIsOptional(arg),
         }))
+        console.log(paramFields)
       }
     } else if (interxType === 'RPC') {
       let metaParam = []
@@ -154,42 +156,21 @@ const Register = () => {
         inputParams[ind] = { type, value }
         res = { ...formState, inputParams }
       } else if (state === 'palletRpc') {
-        res = {
-          ...formState,
-          [state]: value,
-          callable: '',
-          inputParams: [],
-        }
+        res = { ...formState, [state]: value, callable: '', inputParams: [] }
       } else if (state === 'callable') {
         res = { ...formState, [state]: value, inputParams: [] }
       }
+
       return res
     })
   }
 
-  // const onInterxTypeChange = (ev, data) => {
-  //   setInterxType(data.value)
-  //   // clear the formState
-  //   setFormState(initFormState)
-  // }
-
-  // const getOptionalMsg = interxType =>
-  //   interxType === 'RPC'
-  //     ? 'Optional Parameter'
-  //     : 'Leaving this field as blank will submit a NONE value'
-
   const labelNames = [
     {
-      value: 'Full Name',
-    },
-    {
-      value: 'Address',
+      value: 'Vaccine ID',
     },
   ]
-
-  // const handleChange = event => {
-  //   setRole(event.target.value)
-  // }
+  // console.log('data', formState.inputParams[0].value)
   return (
     <Grid container direction="column" rowSpacing={8}>
       <Grid item md>
@@ -197,7 +178,7 @@ const Register = () => {
       </Grid>
       <Grid item md>
         <Container>
-          <Stack spacing={8}>
+          <Stack spacing={8} sx={{ mb: '5rem' }}>
             <Stack>
               <Typography
                 variant="content"
@@ -205,13 +186,13 @@ const Register = () => {
                 sx={{ fontSize: '4.8rem', fontWeight: 600 }}
                 align="center"
               >
-                Register
+                Tracking Vaccine Information
               </Typography>
             </Stack>
-            <Stack spacing={1} sx={{ px: 20 }}>
-              <InputLabel sx={{ fontSize: '2rem' }}>Your ID</InputLabel>
-              <AccountMain />
-            </Stack>
+            {/* <Stack spacing={1} sx={{ px: 20 }}>
+                <InputLabel sx={{ fontSize: '2rem' }}>Your ID</InputLabel>
+                <AccountMain />
+              </Stack> */}
             {paramFields.map((paramField, ind) => (
               <Stack
                 spacing={1}
@@ -229,17 +210,18 @@ const Register = () => {
                 )}
 
                 <Input
+                  id="vaccineInfo"
+                  type="text"
+                  name="vaccineInfo"
                   fluid
-                  name="accountInfo"
                   placeholder={labelNames[ind].value}
                   className="input-style"
-                  onChange={onPalletCallableParamChange}
                   state={{ ind, paramField }}
                   value={inputParams[ind] ? inputParams[ind].value : ''}
+                  onChange={onPalletCallableParamChange}
                 />
               </Stack>
             ))}
-
             <Stack
               direction="row"
               justifyContent="flex-end"
@@ -270,25 +252,23 @@ const Register = () => {
                 />
               </Stack>
             </Stack>
-            <Container>
-              <Box>{status}</Box>
-            </Container>
-            <Events />
+            <FormTrackingVaccine value={status} />
           </Stack>
         </Container>
+        {/* <Events /> */}
       </Grid>
     </Grid>
   )
 }
 
-export default Register
+export default TrackingVaccine
 
 function InteractorSubmit(props) {
   const {
     attrs: { interxType },
   } = props
   if (interxType === 'QUERY') {
-    return <TxButton label="Query" type="QUERY" color="blue" {...props} />
+    return <TxButton label="Search" type="QUERY" color="blue" {...props} />
   } else if (interxType === 'EXTRINSIC') {
     return <TxButton label="Run" type="SIGNED-TX" color="red" {...props} />
   } else if (interxType === 'RPC' || interxType === 'CONSTANT') {

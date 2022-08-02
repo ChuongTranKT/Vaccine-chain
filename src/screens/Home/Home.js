@@ -2,6 +2,7 @@ import { Grid, Typography, Box, Stack, Container } from '@mui/material'
 import React from 'react'
 import backgroundImage from '../../assets/images/img-home.png'
 import iconSearch from '../../assets/ic_search.svg'
+import iconTracking from '../../assets/track_shipment.png'
 // import backgroundSystem from '../../assets/images/img-system-manage.png'
 // import imgSystem from '../../assets/images/img-system.svg'
 // import imgManufacture from '../../assets/images/img-manufacture.png'
@@ -71,10 +72,21 @@ const ScreensHome = () => {
         direction="column"
         rowSpacing={2}
       >
-        <Grid>
-          <Stack direction="row" justifyContent="flex-end" sx={{ mr: 3 }}>
-            <img src={iconSearch} alt="" width="65px" height="65px" />
-          </Stack>
+        <Grid container justifyContent="flex-end">
+          <Grid>
+            <Link to="/search-vaccine-info">
+              <Stack direction="row" justifyContent="flex-end" sx={{ mr: 3 }}>
+                <img src={iconSearch} alt="" width="65px" height="65px" />
+              </Stack>
+            </Link>
+          </Grid>
+          <Grid>
+            <Link to="/tracking-vaccine-info">
+              <Stack direction="row" justifyContent="flex-end" sx={{ mr: 3 }}>
+                <img src={iconTracking} alt="" width="65px" height="65px" />
+              </Stack>
+            </Link>
+          </Grid>
         </Grid>
         {MenuHome.map(menu => (
           <Grid item md key={menu.id}>

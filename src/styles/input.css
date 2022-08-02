@@ -6,3 +6,19 @@
     border-radius: 0.6rem;
     outline: none;
 }
+
+.input-info-vaccine > input {
+    text-align: center !important;
+}
+
+.ui.label {
+    width: 50% !important;
+    text-align: center !important;
+    border-bottom: 2px solid #fff !important;
+    color: #fff !important;
+    background-color: #c5c7ca !important;
+}
+
+Table {
+    text-align: center !important;
+}

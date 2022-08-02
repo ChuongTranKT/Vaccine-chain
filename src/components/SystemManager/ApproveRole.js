@@ -15,6 +15,7 @@ import { TxButton } from '../../substrate-lib/components'
 import AccountMain from '../User/AccountMain'
 import '../../styles/input.css'
 import Header from '../UI/Header/Header'
+import Events from '../../Events'
 
 const argIsOptional = arg => arg.type.toString().startsWith('Option<')
 const ApproveRole = () => {
@@ -255,6 +256,7 @@ const ApproveRole = () => {
             <Container>
               <Box>{status}</Box>
             </Container>
+            <Events />
           </Stack>
         </Container>
       </Grid>
