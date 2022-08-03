@@ -13261,43 +13261,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"substrate-front-end-template@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "substrate-front-end-template@workspace:."
-  dependencies:
-    "@emotion/react": ^11.9.3
-    "@emotion/styled": ^11.9.3
-    "@mui/material": ^5.8.7
-    "@polkadot/api": ^7.10.1
-    "@polkadot/extension-dapp": ^0.42.7
-    "@polkadot/keyring": ^8.4.1
-    "@polkadot/networks": ^8.4.1
-    "@polkadot/types": ^7.10.1
-    "@polkadot/ui-keyring": ^1.1.1
-    "@polkadot/ui-settings": ^1.1.1
-    "@polkadot/util": ^8.4.1
-    "@polkadot/util-crypto": ^8.4.1
-    eslint: ^8.10.0
-    eslint-config-prettier: ^8.4.0
-    eslint-config-react-app: ^7.0.0
-    gh-pages: ^3.2.3
-    node-polyfill-webpack-plugin: ^1.1.4
-    prettier: 2.5.1
-    prop-types: ^15.8.1
-    react: ^17.0.2
-    react-app-rewired: ^2.2.1
-    react-copy-to-clipboard: ^5.0.4
-    react-dom: ^17.0.2
-    react-hook-form: ^7.33.1
-    react-router-dom: ^6.3.0
-    react-scripts: ^5.0.0
-    semantic-ui-css: "Semantic-Org/Semantic-UI-CSS#master"
-    semantic-ui-react: ^2.1.2
-    semistandard: ^16.0.1
-    stream-browserify: ^3.0.0
-  languageName: unknown
-  linkType: soft
-
 "supports-color@npm:^5.3.0":
   version: 5.5.0
   resolution: "supports-color@npm:5.5.0"
@@ -14018,6 +13981,43 @@ __metadata:
   checksum: 54ce92bec2727879626f623d02c8d193f0c7e919941fa373ec135189a8382265117f5316ea317a1e12a5f9c13d84d8449052a731fe3306fa4beaafbfa4cab229
   languageName: node
   linkType: hard
+
+"vaccine-chain@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "vaccine-chain@workspace:."
+  dependencies:
+    "@emotion/react": ^11.9.3
+    "@emotion/styled": ^11.9.3
+    "@mui/material": ^5.8.7
+    "@polkadot/api": ^7.10.1
+    "@polkadot/extension-dapp": ^0.42.7
+    "@polkadot/keyring": ^8.4.1
+    "@polkadot/networks": ^8.4.1
+    "@polkadot/types": ^7.10.1
+    "@polkadot/ui-keyring": ^1.1.1
+    "@polkadot/ui-settings": ^1.1.1
+    "@polkadot/util": ^8.4.1
+    "@polkadot/util-crypto": ^8.4.1
+    eslint: ^8.10.0
+    eslint-config-prettier: ^8.4.0
+    eslint-config-react-app: ^7.0.0
+    gh-pages: ^3.2.3
+    node-polyfill-webpack-plugin: ^1.1.4
+    prettier: 2.5.1
+    prop-types: ^15.8.1
+    react: ^17.0.2
+    react-app-rewired: ^2.2.1
+    react-copy-to-clipboard: ^5.0.4
+    react-dom: ^17.0.2
+    react-hook-form: ^7.33.1
+    react-router-dom: ^6.3.0
+    react-scripts: ^5.0.0
+    semantic-ui-css: "Semantic-Org/Semantic-UI-CSS#master"
+    semantic-ui-react: ^2.1.2
+    semistandard: ^16.0.1
+    stream-browserify: ^3.0.0
+  languageName: unknown
+  linkType: soft
 
 "vary@npm:~1.1.2":
   version: 1.1.2
