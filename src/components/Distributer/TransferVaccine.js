@@ -177,7 +177,7 @@ const TransferVaccine = () => {
       </Grid>
       <Grid item md>
         <Container>
-          <Stack spacing={8}>
+          <Stack spacing={8} sx={{ pb: '10rem' }}>
             <Stack>
               <Typography
                 variant="content"

@@ -19,6 +19,7 @@ import FormTrackingVaccine from './FormTracking'
 const argIsOptional = arg => arg.type.toString().startsWith('Optional<')
 const TrackingVaccine = () => {
   // Retrieves the entries for all slashes, in all eras (no arg)
+  // Get account information
   const { api, jsonrpc } = useSubstrateState()
   const [status, setStatus] = useState('')
 
@@ -255,7 +256,6 @@ const TrackingVaccine = () => {
             <FormTrackingVaccine value={status} />
           </Stack>
         </Container>
-        {/* <Events /> */}
       </Grid>
     </Grid>
   )

@@ -3,7 +3,7 @@ import React from 'react'
 import { Table, Input } from 'semantic-ui-react'
 
 export default function FormTrackingVaccine(value) {
-  // console.log('vacId ne', JSON.parse(value.value))
+  console.log('data', value.value)
   if (value.value === '') {
     return null
   } else if (!IsJsonString(value.value)) {
@@ -26,9 +26,6 @@ export default function FormTrackingVaccine(value) {
     )
   }
 
-  const handleClick = e => {
-    alert('ad')
-  }
   return (
     <Stack sx={{ mt: '5rem' }} spacing={5}>
       <Stack>
@@ -55,32 +52,18 @@ export default function FormTrackingVaccine(value) {
             </Table.Header>
             <Table.Body>
               <Table.Row>
-                <Table.Cell>haha</Table.Cell>
-                {/* { if (JSON.parse(value.value).length === 0)
-                    return (
-                      <Table.Cell>{JSON.parse(value.value).status}</Table.Cell>
-                    )
-                  else
-                    return (
-                      <Table.Cell>
-                        {
-                          JSON.parse(value.value)[
-                            JSON.parse(value.value).length - 1
-                          ].status
-                        }
-                      </Table.Cell>
-                    )} */}
-                {/* {JSON.parse(value.value)[JSON.parse(value.value).length - 1]
-                  .status > 0 ? ( */}
+                <Table.Cell>
+                  {hex_to_ascii(
+                    JSON.parse(value.value)[JSON.parse(value.value).length - 1]
+                      .vacId
+                  )}
+                </Table.Cell>
                 <Table.Cell>
                   {
                     JSON.parse(value.value)[JSON.parse(value.value).length - 1]
                       .status
                   }
                 </Table.Cell>
-                {/* ) : (
-                  <Table.Cell>{JSON.parse(value.value).status}</Table.Cell>
-                )} */}
               </Table.Row>
             </Table.Body>
           </Table>
@@ -107,8 +90,8 @@ export default function FormTrackingVaccine(value) {
             <Table.Row>
               <Table.HeaderCell>Time</Table.HeaderCell>
               <Table.HeaderCell>Status</Table.HeaderCell>
-              <Table.HeaderCell>From</Table.HeaderCell>
-              <Table.HeaderCell>To</Table.HeaderCell>
+              <Table.HeaderCell>Previous Owner </Table.HeaderCell>
+              <Table.HeaderCell>Current Owner</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
 
@@ -128,8 +111,12 @@ export default function FormTrackingVaccine(value) {
                     }).format(vaccine.time)}
                   </Table.Cell>
                   <Table.Cell>{vaccine.status}</Table.Cell>
-                  <Table.Cell onClick={handleClick}>{vaccine.from}</Table.Cell>
-                  <Table.Cell>{vaccine.to}</Table.Cell>
+                  <Table.Cell>
+                    {hex_to_ascii(vaccine.nameFrom)} ({vaccine.from})
+                  </Table.Cell>
+                  <Table.Cell>
+                    {hex_to_ascii(vaccine.nameTo)} ({vaccine.to})
+                  </Table.Cell>
                 </Table.Row>
               ))}
           </Table.Body>
@@ -147,11 +134,12 @@ function IsJsonString(str) {
   return true
 }
 
-// function hex_to_ascii(str1) {
-//   var hex = str1.toString()
-//   var str = ''
-//   for (var n = 0; n < hex.length; n += 2) {
-//     str += String.fromCharCode(parseInt(hex.substr(n, 2), 16))
-//   }
-//   return str
-// }
+function hex_to_ascii(str1) {
+  if (str1 === null) return (str1 = 'null')
+  var hex = str1.toString()
+  var str = ''
+  for (var n = 2; n < hex.length; n += 2) {
+    str += String.fromCharCode(parseInt(hex.substr(n, 2), 16))
+  }
+  return str
+}

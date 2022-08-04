@@ -76,13 +76,6 @@ export default function ViewVaccine(value) {
         labelPosition="left"
         value={JSON.parse(value.value).inoculationCount}
       ></Input>
-      <Input
-        fluid
-        className="input-info-vaccine"
-        label={{ content: 'Current Status' }}
-        labelPosition="left"
-        value={JSON.parse(value.value).status}
-      ></Input>
     </Box>
   )
 }

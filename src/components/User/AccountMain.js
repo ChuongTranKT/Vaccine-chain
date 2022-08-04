@@ -25,6 +25,10 @@ function Main(props) {
     icon: 'user',
   }))
 
+  // console.log('account', keyringOptions)
+
+  // console.log('account', JSON.stringify(keyringOptions))
+
   const initialAddress =
     keyringOptions.length > 0 ? keyringOptions[0].value : ''
 
@@ -36,15 +40,15 @@ function Main(props) {
       setCurrentAccount(keyring.getPair(initialAddress))
   }, [currentAccount, setCurrentAccount, keyring, initialAddress])
 
-  const onChange = addr => {
-    setCurrentAccount(keyring.getPair(addr))
-  }
+  // const onChange = addr => {
+  //   setCurrentAccount(keyring.getPair(addr))
+  // }
 
   return (
     <Input
-      onChange={(_, dropdown) => {
-        onChange(dropdown.value)
-      }}
+      // onChange={(_, dropdown) => {
+      //   onChange(dropdown.value)
+      // }}
       value={acctAddr(currentAccount)}
       className="input-style"
     />
